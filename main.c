@@ -146,6 +146,7 @@ int integers_that_divide_me(number)
                     count++;                                         /**/
                     curr = curr->next;                         /**/
                 x   = 	x * indexed_node;
+                /*BUG*/ //  * is raising x to the node we are returning instead of just multiplying.
                 printf("The x is %d\n\n",x);
                 }
                 printf("The x adding to the list is %d\n\n",x);
