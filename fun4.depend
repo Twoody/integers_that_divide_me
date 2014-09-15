@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1410769819 source:c:\users\tanner\desktop\programming of all kinds\c\fun4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<assert.h>
+
