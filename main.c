@@ -85,7 +85,7 @@ int is_prime(int x)                                         /**/
 int integers_that_divide_me(int number)
 {
     head = NULL;
-    int counter, candidates,i,x;
+    int counter, candidates,i,x,tempz;
      //  candidates will be used as a countdown, counter will be used for loops
     pool_of_primes(number); //  Creating a list of the primes that compose our number
     printf("\n\nWE ARE INSIDE OF INTS_.._ME()\n\n");
@@ -100,13 +100,18 @@ int integers_that_divide_me(int number)
     item* temp  = head;     //  assigning a temp node to the head of 1st list to find the size of prime pool
     candidates  = 0;
     i           = 0;
+    tempz       = 1;
+
     int length  = 0;
     while(temp)
     {
-        candidates = (candidates+(2^i));
+        for (i=0;i<length;i++){
+            tempz = tempz*2;
+        }
+        candidates  += tempz;
         length++;
-        i++;
-        temp = temp->next;  //  move to next node
+        temp         = temp->next;  //  move to next node
+        tempz        = 1;
     }
 /*********************************************************************************************************/
 /*We now have a length*/
@@ -122,17 +127,10 @@ int integers_that_divide_me(int number)
     curr2->next  = head2;                                                               /**/
     head2        = curr2;                                                               /**/
 /*********************************************************************************************************/
-	/*nList.append(number): while loop does not provide this in our list*/
-    curr2        = (item2 *)malloc(sizeof(item2));                                      /**/
-    curr2->val   = number;                                                                   /**/
-    curr2->next  = head2;                                                               /**/
-    head2        = curr2;                                                               /**/
-/*********************************************************************************************************/
 	while (candidates != 0)
 	{
 		int indexed_node, count;
 		x   =   1;
-		printf("Candidates = %d\n\n",candidates);
 		for (counter=0; counter<=length;counter++)
 		{
 			if(candidates & (1<<counter))
