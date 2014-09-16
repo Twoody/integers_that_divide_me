@@ -93,13 +93,15 @@ int integers_that_divide_me(int number)										/**/
      //  candidates will be used as a countdown, counter will be used for loops					/**/
     pool_of_primes(number); //  Creating a list of the primes that compose our number				/**/
     printf("We are seeing what is created from our pool of primes\n\n");					/**/
+    printf(" __________\n");											/**/
     curr =  head;												/**/
     while(curr)													/**/
     {														/**/
-        printf("%d\n", curr->val);										/**/
+        printf("|    %d     \n", curr->val);									/**/
         curr = curr->next ;											/**/
     }														/**/
-    printf("\n");												/**/
+    printf("|__________\n");											/**/
+    getchar();
 /***************************************************************************************************************/
     item* temp  = head;     //  assigning a temp node to the head of 1st list to find the size of prime pool	/**/
     candidates  = 0;												/**/
