@@ -33,7 +33,7 @@ int main()
     int     a, number;
     printf("Hello world!\n\n\n");
 
-    number  =       99;
+    number  =       30;
     printf("Our number is %d\n", number);
     a       =       integers_that_divide_me(number);
     while(curr2)
@@ -82,10 +82,10 @@ int is_prime(int x)                                         /**/
 /**************************************************************/
 
 
-int integers_that_divide_me(number)
+int integers_that_divide_me(int number)
 {
     head = NULL;
-    int counter, candidates,i;
+    int counter, candidates,i,x;
      //  candidates will be used as a countdown, counter will be used for loops
     pool_of_primes(number); //  Creating a list of the primes that compose our number
     printf("\n\nWE ARE INSIDE OF INTS_.._ME()\n\n");
@@ -108,8 +108,6 @@ int integers_that_divide_me(number)
         i++;
         temp = temp->next;  //  move to next node
     }
-    printf("The length     of list is %d\n\n",length);
-    printf("The candidates of list is %d\n\n",candidates);
 /*********************************************************************************************************/
 /*We now have a length*/
 	if (length >=21)        //  If there are to many integers
@@ -124,14 +122,19 @@ int integers_that_divide_me(number)
     curr2->next  = head2;                                                               /**/
     head2        = curr2;                                                               /**/
 /*********************************************************************************************************/
+	/*nList.append(number): while loop does not provide this in our list*/
+    curr2        = (item2 *)malloc(sizeof(item2));                                      /**/
+    curr2->val   = number;                                                                   /**/
+    curr2->next  = head2;                                                               /**/
+    head2        = curr2;                                                               /**/
+/*********************************************************************************************************/
 	while (candidates != 0)
 	{
-		int x 	=	1;
 		int indexed_node, count;
+		x   =   1;
+		printf("Candidates = %d\n\n",candidates);
 		for (counter=0; counter<=length;counter++)
 		{
-		    printf("%d, %d\n",counter,candidates);
-		    x   =   1;
 			if(candidates & (1<<counter))
 			{
 			    curr = head;                        /**/
@@ -141,21 +144,17 @@ int integers_that_divide_me(number)
                     if (count == counter)
                     {                              /**/
                         indexed_node = curr->val;
-                        printf("indexed_node = %d\n",indexed_node);
+                        x   = 	x * indexed_node;
                     }                        /**/
                     count++;                                         /**/
                     curr = curr->next;                         /**/
-                x   = 	x * indexed_node;
-                /*BUG*/ //  * is raising x to the node we are returning instead of just multiplying.
-                printf("The x is %d\n\n",x);
                 }
-                printf("The x adding to the list is %d\n\n",x);
-                curr2        = (item2 *)malloc(sizeof(item2));     /**/
-                curr2->val   = x;                               /**/
-                curr2->next  = head2;                             /**/
-                head2        = curr2;
             }
 		}
+        curr2        = (item2 *)malloc(sizeof(item2));     /**/
+        curr2->val   = x;                               /**/
+        curr2->next  = head2;                             /**/
+        head2        = curr2;
 		/*BUG*/ //  Should check for doubles here
 		candidates 	-=	1;
 	}
