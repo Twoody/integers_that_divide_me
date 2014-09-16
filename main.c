@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <assert.h>
-#include <math.h>
 
 /******************************//**/
 struct list_el {                /**/
@@ -33,14 +31,18 @@ int main()
     int     a, number;
     printf("Hello world!\n\n\n");
 
-    number  =       30;
+    number  =       99;
     printf("Our number is %d\n", number);
     a       =       integers_that_divide_me(number);
+    printf("Integers that divide our number consist of the following:\n");
+    printf(" __________\n");
+    curr2 = head2;
     while(curr2)
     {
-        printf("%d\n", curr2->val);
+        printf("|    %d     \n", curr2->val);
         curr2 = curr2->next ;
     }
+    printf("|__________\n");
     printf("\n\nFinished with main()\n\n");
     return 0;
 }
@@ -85,11 +87,11 @@ int is_prime(int x)                                         /**/
 int integers_that_divide_me(int number)
 {
     head = NULL;
-    int counter, candidates,i,x,tempz;
+    int counter, candidates,i,x,tempz,indexed_node,count,bewl;
      //  candidates will be used as a countdown, counter will be used for loops
     pool_of_primes(number); //  Creating a list of the primes that compose our number
-    printf("\n\nWE ARE INSIDE OF INTS_.._ME()\n\n");
     printf("We are seeing what is created from our pool of primes\n\n");
+    curr =  head;
     while(curr)
     {
         printf("%d\n", curr->val);
@@ -129,8 +131,8 @@ int integers_that_divide_me(int number)
 /*********************************************************************************************************/
 	while (candidates != 0)
 	{
-		int indexed_node, count;
-		x   =   1;
+		x       =   1;
+		bewl    =   1;
 		for (counter=0; counter<=length;counter++)
 		{
 			if(candidates & (1<<counter))
@@ -145,16 +147,27 @@ int integers_that_divide_me(int number)
                         x   = 	x * indexed_node;
                     }                        /**/
                     count++;                                         /**/
-                    curr = curr->next;                         /**/
+                    curr    =   curr->next;                         /**/
                 }
             }
 		}
-        curr2        = (item2 *)malloc(sizeof(item2));     /**/
-        curr2->val   = x;                               /**/
-        curr2->next  = head2;                             /**/
-        head2        = curr2;
-		/*BUG*/ //  Should check for doubles here
-		candidates 	-=	1;
+        curr2   =   head2;
+        while(curr2)
+        {
+            if(x == curr2->val)
+            {
+                bewl = 0;
+            }
+            curr2 = curr2->next ;
+        }
+        if (bewl == 1)
+        {
+            curr2         = (item2 *)malloc(sizeof(item2));     /**/
+            curr2->val    = x;                               /**/
+            curr2->next   = head2;                             /**/
+            head2         = curr2;
+        }
+		candidates 	    -=	1;
 	}
 /*********************************************************************************************************/
 	printf("\n\nDONE WITH CONSTRUCTING MAIN LIST\n\n");
