@@ -29,12 +29,14 @@ int main()
 {
     head2   =   NULL;
     int     a, number;
-    printf("Hello world!\n\n\n");
+    printf("Hello world!\n");
+    printf("Please, enter a number:");
+    scanf("%d",&number);
 
-    number  =       99;
     printf("Our number is %d\n", number);
     a       =       integers_that_divide_me(number);
-    printf("Integers that divide our number consist of the following:\n");
+    getchar();
+    printf("Integers that divide %d consist of the following:\n",number);
     printf(" __________\n");
     curr2 = head2;
     while(curr2)
@@ -43,7 +45,7 @@ int main()
         curr2 = curr2->next ;
     }
     printf("|__________\n");
-    printf("\n\nFinished with main()\n\n");
+    printf("Finished with main()");
     return 0;
 }
 
@@ -97,7 +99,7 @@ int integers_that_divide_me(int number)										/**/
         printf("%d\n", curr->val);										/**/
         curr = curr->next ;											/**/
     }														/**/
-    printf("DONE\n\n");												/**/
+    printf("\n");												/**/
 /***************************************************************************************************************/
     item* temp  = head;     //  assigning a temp node to the head of 1st list to find the size of prime pool	/**/
     candidates  = 0;												/**/
@@ -129,28 +131,28 @@ int integers_that_divide_me(int number)										/**/
     curr2->next  = head2;                                                               			/**/
     head2        = curr2;                                                               			/**/
 /***************************************************************************************************************/
-	while (candidates != 0)											/**/
+    while (candidates != 0)											/**/
+    {														/**/
+	x       =   1;												/**/
+	bewl    =   1;												/**/
+	for (counter=0; counter<=length;counter++)								/**/
 	{													/**/
-		x       =   1;											/**/
-		bewl    =   1;											/**/
-		for (counter=0; counter<=length;counter++)							/**/
+		if(candidates & (1<<counter))									/**/
 		{												/**/
-			if(candidates & (1<<counter))								/**/
-			{											/**/
-			    curr = head;                        						/**/
-                count = 0;											/**/
-                while (curr)                             							/**/
-                {                                                   						/**/
-                    if (count == counter)									/**/
-                    {                              								/**/
-                        indexed_node = curr->val;								/**/
-                        x   = 	x * indexed_node;								/**/
-                    }                        									/**/
+		    curr = head;                        							/**/
+                    count = 0;											/**/
+                   while (curr)                             							/**/
+                   {                                                   						/**/
+                   	if (count == counter)									/**/
+                    	{                              								/**/
+                        	indexed_node = curr->val;							/**/
+                        	x   = 	x * indexed_node;							/**/
+                    	}                        								/**/
                     count++;                                         						/**/
                     curr    =   curr->next;                         						/**/
-                }												/**/
-            }													/**/
-		}												/**/
+                    }												/**/
+            	}												/**/
+	}													/**/
         curr2   =   head2;											/**/
         while(curr2)												/**/
         {													/**/
@@ -168,9 +170,8 @@ int integers_that_divide_me(int number)										/**/
             head2         = curr2;										/**/
         }													/**/
 		candidates 	    -=	1;									/**/
-	}													/**/
+    }														/**/
 /***************************************************************************************************************/
-	printf("\n\nDONE WITH CONSTRUCTING MAIN LIST\n\n");							/**/
 	return 1;												/**/
 }														/**/
 /******************************************************************************************************************/
