@@ -101,7 +101,7 @@ int integers_that_divide_me(int number)										/**/
         curr = curr->next ;											/**/
     }														/**/
     printf("|__________\n");											/**/
-    getchar();
+    getchar();                                                                                                  /**/
 /***************************************************************************************************************/
     item* temp  = head;     //  assigning a temp node to the head of 1st list to find the size of prime pool	/**/
     candidates  = 0;												/**/
